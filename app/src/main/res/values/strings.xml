@@ -7,4 +7,5 @@
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="birth_date">Дата рождения</string>
     <string name="sign_up">Зарегистрироваться</string>
+    <string name="greeting">Приветствие!</string>
 </resources>
