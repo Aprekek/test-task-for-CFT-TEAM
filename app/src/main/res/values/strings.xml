@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CFT test task</string>
+    <string name="registration">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="second_name">Фамилия</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="sign_up">Зарегистрироваться</string>
 </resources>
