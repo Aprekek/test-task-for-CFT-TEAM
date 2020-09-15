@@ -85,6 +85,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/password"
+                    app:errorIconDrawable="@null"
+                    app:errorMessage="@{@string/password_error_message}"
+                    app:isError="@{viewModel.isPasswordNotValid}"
                     app:layout_constraintTop_toBottomOf="@+id/date_button"
                     app:passwordToggleEnabled="true">
 
@@ -102,6 +105,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/confirm_password"
+                    app:errorIconDrawable="@null"
+                    app:errorMessage="@{@string/conf_password_error_message}"
+                    app:isError="@{viewModel.isConfPasswordNotValid}"
                     app:layout_constraintTop_toBottomOf="@+id/password_til"
                     app:passwordToggleEnabled="true">
 
@@ -118,6 +124,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="20dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:clickable="false"
                     android:text="@string/sign_up"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

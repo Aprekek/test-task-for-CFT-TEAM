@@ -8,4 +8,8 @@
     <string name="birth_date">Дата рождения</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="greeting">Приветствие!</string>
+
+    <string name="password_error_message">"Проль должен быть длинной 8–16 символов,"
+        "содержать: цифры, символы верхнего и нижнего регистров"</string>
+    <string name="conf_password_error_message">"Проли не совпадают"</string>
 </resources>

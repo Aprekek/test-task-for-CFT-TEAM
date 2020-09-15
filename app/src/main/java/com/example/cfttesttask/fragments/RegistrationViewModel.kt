@@ -1,26 +1,41 @@
 package com.example.cfttesttask.fragments
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.cfttesttask.utils.isContainsNumber
+import com.example.cfttesttask.utils.isContainsUppercase
 
 class RegistrationViewModel : ViewModel() {
 
-    companion object {
-        const val GET_BIRTH_DATE = "Дата рождения"
-        const val DEFAULT_YEAR = 2001
-    }
+    private companion object {
 
-    private val monthsString = arrayOf(
-        "января", "февраля", "марта", "апреля", "мая", "июня",
-        "июля", "августа", "сентября", "октября", "ноября", "декабря"
-    )
+        const val BIRTH_DATE_STR = "Дата рождения"
+        const val DEFAULT_YEAR = 2001
+        const val MIN_LENGTH = 8
+        const val MAX_LENGTH = 16
+
+        private val monthsString = arrayOf(
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря"
+        )
+    }
 
     val name = MutableLiveData<String>()
     val secondName = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val confirmedPassword = MutableLiveData<String>()
 
-    val birthDate = MutableLiveData<String>(GET_BIRTH_DATE)
+    val isPasswordNotValid: LiveData<Boolean> = Transformations.map(password) {
+        !(it.isContainsNumber() && it.isContainsUppercase() &&
+                (it.length >= MIN_LENGTH) && (it.length <= MAX_LENGTH))
+    }
+    val isConfPasswordNotValid: LiveData<Boolean> = Transformations.map(confirmedPassword) {
+        !(it.equals(password.value, false))
+    }
+
+    val birthDate = MutableLiveData<String>(BIRTH_DATE_STR)
     private var _year: Int = DEFAULT_YEAR
     val year: Int
         get() = _year

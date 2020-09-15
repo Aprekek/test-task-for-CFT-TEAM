@@ -38,7 +38,7 @@ class RegistrationFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
-    fun initListeners() {
+    private fun initListeners() {
         binding.dateButton.setOnClickListener {
             initDatePicker()
         }
