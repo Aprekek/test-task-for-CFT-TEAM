@@ -127,6 +127,7 @@
                     android:backgroundTint="@color/colorAccent"
                     android:clickable="false"
                     android:text="@string/sign_up"
+                    app:isButtonActive="@{viewModel.currentFieldsValidationFlag.equals(viewModel.ALL_VALID_FL)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -1,4 +1,4 @@
-package com.example.cfttesttask.utils
+package com.example.cfttesttask.extentions
 
 fun String.isContainsNumber(): Boolean {
     forEach {
