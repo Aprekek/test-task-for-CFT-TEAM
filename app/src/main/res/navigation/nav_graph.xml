@@ -22,5 +22,10 @@
         <argument
             android:name="person_info"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mainFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

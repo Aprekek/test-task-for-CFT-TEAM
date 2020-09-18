@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.cfttesttask.R
 import com.example.cfttesttask.databinding.MainFragmentBinding
 import com.example.cfttesttask.domain.constants.PreferencesKeys
@@ -32,18 +33,7 @@ class MainFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        saveStatusInPreferences()
-    }
-
-    private fun saveStatusInPreferences() {
-        this.activity?.getPreferences(Context.MODE_PRIVATE)?.let { _pref ->
-            _pref.edit()?.let { _edit ->
-                with(_edit) {
-                    putInt(PreferencesKeys.STATUS, StatusConstants.SAVED)
-                    commit()
-                }
-            }
-        }
+        saveStatusInPreferences(viewModel.dataStatus)
     }
 
     private fun initBinding(
@@ -63,6 +53,29 @@ class MainFragment : Fragment() {
                 getString(R.string.greeting_message),
                 Toast.LENGTH_LONG
             ).show()
+        }
+
+        binding.toolbar.setOnMenuItemClickListener {
+            viewModel.dataStatus = StatusConstants.DELETED
+            navigateToStartingFragment()
+            true
+        }
+    }
+
+    private fun navigateToStartingFragment() {
+        findNavController().navigate(
+            MainFragmentDirections.actionMainFragmentToRegistrationFragment()
+        )
+    }
+
+    private fun saveStatusInPreferences(status: Int) {
+        this.activity?.getPreferences(Context.MODE_PRIVATE)?.let { _pref ->
+            _pref.edit()?.let { _edit ->
+                with(_edit) {
+                    putInt(PreferencesKeys.STATUS, status)
+                    commit()
+                }
+            }
         }
     }
 }
