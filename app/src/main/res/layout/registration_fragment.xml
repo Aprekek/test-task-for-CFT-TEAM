@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.cfttesttask.fragments.RegistrationViewModel" />
+            type="com.example.cfttesttask.presentation.fragments.RegistrationViewModel" />
     </data>
 
     <LinearLayout
@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:clipToPadding="false"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="20dp">
 
@@ -127,7 +128,7 @@
                     android:backgroundTint="@color/colorAccent"
                     android:clickable="false"
                     android:text="@string/sign_up"
-                    app:isButtonActive="@{viewModel.currentFieldsValidationFlag.equals(viewModel.ALL_VALID_FL)}"
+                    app:isButtonActive="@{true}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

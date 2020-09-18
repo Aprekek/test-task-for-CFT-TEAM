@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.example.cfttesttask.presentation.activities.MainActivity"
             android:windowSoftInputMode="adjustResize">
 
             <intent-filter>

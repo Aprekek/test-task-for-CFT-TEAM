@@ -1,4 +1,4 @@
-package com.example.cfttesttask.bindingadapters
+package com.example.cfttesttask.presentation.bindingadapters
 
 import androidx.databinding.BindingAdapter
 import com.example.cfttesttask.R

@@ -1,9 +1,9 @@
-package com.example.cfttesttask.fragments
+package com.example.cfttesttask.presentation.fragments
 
 import androidx.lifecycle.*
-import com.example.cfttesttask.extentions.isContainsNumber
-import com.example.cfttesttask.extentions.isContainsUppercase
-import com.example.cfttesttask.extentions.setOrRemoveBitFlag
+import com.example.cfttesttask.domain.extentions.isContainsNumber
+import com.example.cfttesttask.domain.extentions.isContainsUppercase
+import com.example.cfttesttask.domain.extentions.setOrRemoveBitFlag
 
 class RegistrationViewModel : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.example.cfttesttask.extentions
+package com.example.cfttesttask.domain.extentions
 
 import androidx.lifecycle.MediatorLiveData
 
