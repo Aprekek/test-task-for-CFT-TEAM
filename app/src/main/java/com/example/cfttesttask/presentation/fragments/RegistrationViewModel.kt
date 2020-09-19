@@ -7,6 +7,7 @@ import com.example.cfttesttask.domain.extentions.isContainsLowercase
 import com.example.cfttesttask.domain.extentions.isContainsNumber
 import com.example.cfttesttask.domain.extentions.isContainsUppercase
 import com.example.cfttesttask.domain.extentions.setOrRemoveBitFlag
+import com.example.cfttesttask.domain.utils.isDateValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -53,8 +54,8 @@ class RegistrationViewModel : ViewModel() {
         !(it.equals(password.value, false))
     }
 
-    val birthDate = MutableLiveData<String>(BIRTH_DATE_STR)
-    private var isBirthDateSet = MutableLiveData<Boolean>(false)
+    val birthDate = MutableLiveData(BIRTH_DATE_STR)
+    private var isBirthDateSet = MutableLiveData(false)
     private var _year: Int = DEFAULT_YEAR
     val year: Int
         get() = _year
@@ -87,12 +88,16 @@ class RegistrationViewModel : ViewModel() {
         }
     }
 
-    fun onDateSelected(year: Int, month: Int, day: Int) {
-        _year = year
-        _month = month
-        _day = day
-        birthDate.value = "$day ${monthsString[month]} $year"
-        isBirthDateSet.value = true
+    fun onDateSelected(year: Int, month: Int, day: Int): Boolean {
+        return if (isDateValid(day, month, year)) {
+            _year = year
+            _month = month
+            _day = day
+            birthDate.value = "$day ${monthsString[month]} $year"
+            isBirthDateSet.value = true
+            true
+        } else
+            false
     }
 
     fun isNicknameExist() {

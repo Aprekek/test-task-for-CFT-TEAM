@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -67,7 +68,12 @@ class RegistrationFragment : Fragment() {
 
     private fun initDatePicker() {
         val listener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            binding.viewModel?.onDateSelected(year, month, day)
+            if (binding.viewModel?.onDateSelected(year, month, day) == false)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.choose_correct_date),
+                    Toast.LENGTH_LONG
+                ).show()
         }
         DatePickerDialog(
             requireContext(),
