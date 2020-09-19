@@ -1,7 +1,7 @@
 package com.example.cfttesttask
 
 import android.app.Application
-import com.example.cfttesttask.di.viewModelModule
+import com.example.cfttesttask.di.appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -17,7 +17,7 @@ class App : Application() {
             androidContext(this@App)
             androidFileProperties()
 
-            modules(viewModelModule)
+            modules(appModules)
         }
     }
 }
