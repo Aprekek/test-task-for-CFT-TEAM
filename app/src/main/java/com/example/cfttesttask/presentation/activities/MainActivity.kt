@@ -17,17 +17,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setStartingFragment() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        val graph = navController.navInflater.inflate(R.navigation.nav_graph)
-
-        val status = getPreferences(MODE_PRIVATE).getInt(PreferencesKeys.STATUS, -1)
-        graph.startDestination = if (status == StatusConstants.SAVED) {
-            R.id.mainFragment
-        } else {
-            R.id.startingFragment
+        val status = getPreferences(MODE_PRIVATE).getLong(
+            PreferencesKeys.ID, StatusConstants.ID_NOT_SET
+        )
+        if (status != StatusConstants.ID_NOT_SET) {
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.host_fragment) as NavHostFragment
+            val navController = navHostFragment.navController
+            val graph = navController.navInflater.inflate(R.navigation.nav_graph)
+            graph.startDestination = R.id.mainFragment
+            navController.graph = graph
         }
-        navController.graph = graph
     }
 }

@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
         }
 
         binding.toolbar.setOnMenuItemClickListener {
-            viewModel.dataStatus = StatusConstants.DELETED
+            viewModel.dataStatus = StatusConstants.ID_NOT_SET
             navigateToStartingFragment()
             true
         }
@@ -68,11 +68,11 @@ class MainFragment : Fragment() {
         )
     }
 
-    private fun saveStatusInPreferences(status: Int) {
+    private fun saveStatusInPreferences(status: Long) {
         this.activity?.getPreferences(Context.MODE_PRIVATE)?.let { _pref ->
             _pref.edit()?.let { _edit ->
                 with(_edit) {
-                    putInt(PreferencesKeys.STATUS, status)
+                    putLong(PreferencesKeys.ID, status)
                     commit()
                 }
             }

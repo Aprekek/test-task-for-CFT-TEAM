@@ -16,6 +16,9 @@ interface PersonDao {
     @Query("SELECT * from person_table WHERE id = :id")
     fun getPerson(id: Long): PersonEntity
 
+    @Query("SELECT * from person_table WHERE nickName = :nickName")
+    fun getPerson(nickName: String): PersonEntity?
+
     @Query("SELECT id from person_table WHERE nickName = :nickName")
-    fun getPerson(nickName: String): Long?
+    fun getPersonId(nickName: String): Long?
 }

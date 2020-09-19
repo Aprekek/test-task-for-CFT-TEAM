@@ -6,13 +6,15 @@
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="birth_date">Дата рождения</string>
+    <string name="nickname">Nickname</string>
 
     <string name="sign_up">Зарегистрироваться</string>
     <string name="log_in">Войти</string>
 
+    <string name="nickname_error_message">Пользователь с таким никнеймом уже существует</string>
     <string name="password_error_message">"Проль должен быть длинной 8–16 символов,"
         "содержать: цифры, символы верхнего и нижнего регистров"</string>
-    <string name="conf_password_error_message">"Проли не совпадают"</string>
+    <string name="conf_password_error_message">Проли не совпадают</string>
     <string name="main_info">Основная информация</string>
 
     <string name="greeting_btn_text">Приветствие!</string>

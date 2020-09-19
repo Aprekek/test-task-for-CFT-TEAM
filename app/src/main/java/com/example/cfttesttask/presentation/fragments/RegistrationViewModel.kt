@@ -1,9 +1,15 @@
 package com.example.cfttesttask.presentation.fragments
 
 import androidx.lifecycle.*
+import com.example.cfttesttask.data.PersonDao
+import com.example.cfttesttask.data.PersonEntity
 import com.example.cfttesttask.domain.extentions.isContainsNumber
 import com.example.cfttesttask.domain.extentions.isContainsUppercase
 import com.example.cfttesttask.domain.extentions.setOrRemoveBitFlag
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.koin.java.KoinJavaComponent.get
 
 class RegistrationViewModel : ViewModel() {
 
@@ -19,19 +25,25 @@ class RegistrationViewModel : ViewModel() {
             "июля", "августа", "сентября", "октября", "ноября", "декабря"
         )
 
-        const val ALL_VALID_FL = 31
+        const val ALL_VALID_FL = 63
         private const val NAME_VALID_FL = 1
         private const val SECOND_NAME_VALID_FL = 2
         private const val PASSWORD_VALID_FL = 4
         private const val CONF_PASSWORD_VALID_FL = 8
         private const val DATE_IS_SET_FL = 16
+        private const val NICKNAME_FL = 32
     }
+
+    private val personDao = get(PersonDao::class.java)
+    val personId = MutableLiveData<Long>()
 
     val name = MutableLiveData<String>()
     val secondName = MutableLiveData<String>()
+    val nickname = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val confirmedPassword = MutableLiveData<String>()
 
+    val nicknameExist = MutableLiveData<Boolean>()
     val isPasswordNotValid: LiveData<Boolean> = Transformations.map(password) {
         !(it.isContainsNumber() && it.isContainsUppercase() &&
                 (it.length >= MIN_LENGTH) && (it.length <= MAX_LENGTH))
@@ -60,6 +72,9 @@ class RegistrationViewModel : ViewModel() {
         addSource(secondName) {
             this.setOrRemoveBitFlag(state = !it.isBlank(), flag = SECOND_NAME_VALID_FL)
         }
+        addSource(nickname) {
+            this.setOrRemoveBitFlag(state = !it.isBlank(), flag = NICKNAME_FL)
+        }
         addSource(isPasswordNotValid) {
             this.setOrRemoveBitFlag(state = !it, flag = PASSWORD_VALID_FL)
         }
@@ -77,5 +92,31 @@ class RegistrationViewModel : ViewModel() {
         _day = day
         birthDate.value = "$day ${monthsString[month]} $year"
         isBirthDateSet.value = true
+    }
+
+    fun isNicknameExist() {
+        viewModelScope.launch(Dispatchers.IO) {
+            nickname.value?.let { _nickname ->
+                val isExist = personDao.getPersonId(_nickname) != null
+                withContext(Dispatchers.Main) {
+                    nicknameExist.value = isExist
+
+                }
+            }
+        }
+    }
+
+    fun addPersonRegInfoToDB() {
+        viewModelScope.launch(Dispatchers.IO) {
+            personId.value = personDao.addPerson(
+                PersonEntity(
+                    nickName = nickname.value!!,
+                    password = password.value!!,
+                    name = name.value!!,
+                    secondName = secondName.value!!,
+                    birthDate = birthDate.value!!
+                )
+            )
+        }
     }
 }

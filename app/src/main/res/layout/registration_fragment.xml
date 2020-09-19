@@ -31,8 +31,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:clipToPadding="false"
+                android:orientation="vertical"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="20dp">
 
@@ -80,6 +80,24 @@
                     tools:text="27 марта 2000" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nickname_til"
+                    style="@style/AppTheme.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/nickname"
+                    app:errorMessage="@{@string/nickname_error_message}"
+                    app:isError="@{viewModel.nicknameExist}"
+                    app:layout_constraintTop_toBottomOf="@+id/date_button">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={viewModel.nickname}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_til"
                     style="@style/AppTheme.TextInputLayout"
                     android:layout_width="match_parent"
@@ -89,7 +107,7 @@
                     app:errorIconDrawable="@null"
                     app:errorMessage="@{@string/password_error_message}"
                     app:isError="@{viewModel.isPasswordNotValid}"
-                    app:layout_constraintTop_toBottomOf="@+id/date_button"
+                    app:layout_constraintTop_toBottomOf="@+id/nickname_til"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -128,7 +146,7 @@
                     android:backgroundTint="@color/colorAccent"
                     android:clickable="false"
                     android:text="@string/sign_up"
-                    app:isButtonActive="@{true}"
+                    app:isButtonActive="@{viewModel.currentFieldsValidationFlag.equals(viewModel.ALL_VALID_FL)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
