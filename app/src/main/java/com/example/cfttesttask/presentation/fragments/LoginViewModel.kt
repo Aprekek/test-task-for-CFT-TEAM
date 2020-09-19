@@ -1,6 +1,5 @@
 package com.example.cfttesttask.presentation.fragments
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -44,7 +43,6 @@ class LoginViewModel : ViewModel() {
             val id = personDao.getPersonId(nickname.value!!, password.value!!)
 
             withContext(Dispatchers.Main) {
-                Log.d("L", "$id")
                 personId.value = id
                 isPersonNotExist.value = id == null
             }
