@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         graph.startDestination = if (status == StatusConstants.SAVED) {
             R.id.mainFragment
         } else {
-            R.id.registrationFragment
+            R.id.startingFragment
         }
         navController.graph = graph
     }

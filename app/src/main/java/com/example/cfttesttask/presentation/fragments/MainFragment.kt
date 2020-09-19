@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
 
     private fun navigateToStartingFragment() {
         findNavController().navigate(
-            MainFragmentDirections.actionMainFragmentToRegistrationFragment()
+            MainFragmentDirections.actionMainFragmentToStartingFragment()
         )
     }
 
