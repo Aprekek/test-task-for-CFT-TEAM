@@ -98,9 +98,9 @@ class RegistrationViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             nickname.value?.let { _nickname ->
                 val isExist = personDao.getPersonId(_nickname) != null
+
                 withContext(Dispatchers.Main) {
                     nicknameExist.value = isExist
-
                 }
             }
         }
@@ -117,6 +117,7 @@ class RegistrationViewModel : ViewModel() {
                     birthDate = birthDate.value!!
                 )
             )
+
             withContext(Dispatchers.Main) {
                 personId.value = id
             }

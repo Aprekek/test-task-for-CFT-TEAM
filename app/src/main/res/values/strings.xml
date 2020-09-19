@@ -1,25 +1,27 @@
 <resources>
     <string name="app_name">CFT test task</string>
+
+    <string name="sign_up">Зарегистрироваться</string>
     <string name="registration">Регистрация</string>
+    <string name="login">Войти</string>
+    <string name="entrance">Вход</string>
+
     <string name="name">Имя</string>
     <string name="second_name">Фамилия</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="birth_date">Дата рождения</string>
     <string name="nickname">Никнейм</string>
-
-    <string name="sign_up">Зарегистрироваться</string>
-    <string name="login">Войти</string>
-
     <string name="nickname_error_message">Пользователь с таким никнеймом уже существует</string>
     <string name="password_error_message">"Проль должен быть длинной 8–16 символов,"
         "содержать: цифры, символы верхнего и нижнего регистров"</string>
     <string name="conf_password_error_message">Проли не совпадают</string>
     <string name="main_info">Основная информация</string>
+    <string name="error_nickname_or_password">Неверый никнейм или пароль</string>
 
     <string name="full_name">%1s %2s</string>
     <string name="greeting_btn_text">Приветствие!</string>
     <string name="greeting_message">Привет! Хорошего дня =)</string>
     <string name="exit">Выйти</string>
-    <string name="entrance">Вход</string>
+
 </resources>

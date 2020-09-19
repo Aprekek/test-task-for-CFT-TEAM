@@ -89,10 +89,7 @@ class RegistrationFragment : Fragment() {
 
     private fun navigateToMainFragment() {
         findNavController().navigate(
-            RegistrationFragmentDirections.actionRegistrationFragmentToMainFragment(
-                viewModel.name.value
-                    ?: throw NullPointerException("viewModel.name.value must be not null")
-            )
+            RegistrationFragmentDirections.actionRegistrationFragmentToMainFragment()
         )
     }
 }
