@@ -20,12 +20,3 @@ fun String.isContainsLowercase(): Boolean {
     }
     return false
 }
-
-fun String.removeExtraSpaces(): String {
-    var newString = ""
-    forEach {
-        if (it != ' ')
-            newString += it
-    }
-    return newString
-}

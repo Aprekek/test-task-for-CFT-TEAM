@@ -3,7 +3,10 @@ package com.example.cfttesttask.presentation.fragments
 import androidx.lifecycle.*
 import com.example.cfttesttask.data.PersonDao
 import com.example.cfttesttask.data.PersonEntity
-import com.example.cfttesttask.domain.extentions.*
+import com.example.cfttesttask.domain.extentions.isContainsLowercase
+import com.example.cfttesttask.domain.extentions.isContainsNumber
+import com.example.cfttesttask.domain.extentions.isContainsUppercase
+import com.example.cfttesttask.domain.extentions.setOrRemoveBitFlag
 import com.example.cfttesttask.domain.utils.isDateValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -113,10 +116,10 @@ class RegistrationViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val id = personDao.addPerson(
                 PersonEntity(
-                    nickName = nickname.value!!.removeExtraSpaces(),
+                    nickName = nickname.value!!.trim(),
                     password = password.value!!,
-                    name = name.value!!.removeExtraSpaces(),
-                    secondName = secondName.value!!.removeExtraSpaces(),
+                    name = name.value!!.trim(),
+                    secondName = secondName.value!!.trim(),
                     birthDate = birthDate.value!!
                 )
             )
