@@ -17,6 +17,7 @@
     <string name="conf_password_error_message">Проли не совпадают</string>
     <string name="main_info">Основная информация</string>
 
+    <string name="full_name">%1s %2s</string>
     <string name="greeting_btn_text">Приветствие!</string>
     <string name="greeting_message">Привет! Хорошего дня =)</string>
     <string name="exit">Выйти</string>

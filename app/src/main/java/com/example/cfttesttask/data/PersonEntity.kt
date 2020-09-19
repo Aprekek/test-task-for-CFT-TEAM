@@ -8,9 +8,9 @@ data class PersonEntity(
 
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val nickName: String,
-    val password: String,
-    val name: String,
-    val secondName: String,
-    val birthDate: String
+    val nickName: String = "",
+    val password: String = "",
+    val name: String = "",
+    val secondName: String = "",
+    val birthDate: String = ""
 )

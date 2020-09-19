@@ -21,8 +21,9 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:menu="@menu/main_menu"
-            app:title="@string/main_info"
-            app:titleTextColor="@color/white" />
+            app:title="@{viewModel.personEntity.nickName}"
+            app:titleTextColor="@color/white"
+            tools:title="Some_nickname.111" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/full_name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -41,10 +43,24 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:name="@{viewModel.personEntity.name}"
+                    app:secondName="@{viewModel.personEntity.secondName}"
                     tools:text="Name SecondName" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingHorizontal="20dp"
+                    android:text="@{viewModel.personEntity.birthDate}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/full_name_text"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:text="23.03.1865" />
 
                 <Button
                     android:id="@+id/greeting_button"

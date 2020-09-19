@@ -108,7 +108,7 @@ class RegistrationViewModel : ViewModel() {
 
     fun addPersonRegInfoToDB() {
         viewModelScope.launch(Dispatchers.IO) {
-            personId.value = personDao.addPerson(
+            val id = personDao.addPerson(
                 PersonEntity(
                     nickName = nickname.value!!,
                     password = password.value!!,
@@ -117,6 +117,9 @@ class RegistrationViewModel : ViewModel() {
                     birthDate = birthDate.value!!
                 )
             )
+            withContext(Dispatchers.Main) {
+                personId.value = id
+            }
         }
     }
 }

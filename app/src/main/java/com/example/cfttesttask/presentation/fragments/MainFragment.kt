@@ -31,9 +31,9 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        saveStatusInPreferences(viewModel.dataStatus)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        loadPersonInfo()
     }
 
     private fun initBinding(
@@ -43,6 +43,7 @@ class MainFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.main_fragment, container, false
         )
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
     }
 
@@ -56,9 +57,9 @@ class MainFragment : Fragment() {
         }
 
         binding.toolbar.setOnMenuItemClickListener {
-            viewModel.dataStatus = StatusConstants.ID_NOT_SET
+            removeIdFromPreferences()
             navigateToStartingFragment()
-            true
+            return@setOnMenuItemClickListener true
         }
     }
 
@@ -68,11 +69,25 @@ class MainFragment : Fragment() {
         )
     }
 
-    private fun saveStatusInPreferences(status: Long) {
+    private fun loadPersonInfo() {
+        val id = getIdFromPreferences()
+        if (id == null || id == StatusConstants.ID_NOT_SET) {
+            throw IllegalStateException("MainFragment: id must be set")
+        } else {
+            viewModel.loadPerson(id)
+        }
+    }
+
+    private fun getIdFromPreferences(): Long? {
+        return this.activity?.getPreferences(Context.MODE_PRIVATE)
+            ?.getLong(PreferencesKeys.ID, StatusConstants.ID_NOT_SET)
+    }
+
+    private fun removeIdFromPreferences() {
         this.activity?.getPreferences(Context.MODE_PRIVATE)?.let { _pref ->
             _pref.edit()?.let { _edit ->
                 with(_edit) {
-                    putLong(PreferencesKeys.ID, status)
+                    putLong(PreferencesKeys.ID, StatusConstants.ID_NOT_SET)
                     commit()
                 }
             }

@@ -3,7 +3,6 @@ package com.example.cfttesttask.presentation.fragments
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,8 +81,8 @@ class RegistrationFragment : Fragment() {
     private fun savePersonIdToPreferences(id: Long) {
         this.activity?.getPreferences(Context.MODE_PRIVATE)?.let {
             it.edit()?.let { _edit ->
-                Log.d("R", "in pref")
                 _edit.putLong(PreferencesKeys.ID, id)
+                _edit.commit()
             }
         }
     }
