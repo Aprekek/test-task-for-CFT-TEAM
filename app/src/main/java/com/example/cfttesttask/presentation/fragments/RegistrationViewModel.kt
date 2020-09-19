@@ -3,10 +3,7 @@ package com.example.cfttesttask.presentation.fragments
 import androidx.lifecycle.*
 import com.example.cfttesttask.data.PersonDao
 import com.example.cfttesttask.data.PersonEntity
-import com.example.cfttesttask.domain.extentions.isContainsLowercase
-import com.example.cfttesttask.domain.extentions.isContainsNumber
-import com.example.cfttesttask.domain.extentions.isContainsUppercase
-import com.example.cfttesttask.domain.extentions.setOrRemoveBitFlag
+import com.example.cfttesttask.domain.extentions.*
 import com.example.cfttesttask.domain.utils.isDateValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,7 +42,7 @@ class RegistrationViewModel : ViewModel() {
     val password = MutableLiveData<String>()
     val confirmedPassword = MutableLiveData<String>()
 
-    val nicknameExist = MutableLiveData<Boolean>()
+    val isSetErrorToNickname = MutableLiveData<Boolean>()
     val isPasswordNotValid: LiveData<Boolean> = Transformations.map(password) {
         !(it.isContainsNumber() && it.isContainsUppercase() && it.isContainsLowercase() &&
                 (it.length >= MIN_LENGTH) && (it.length <= MAX_LENGTH))
@@ -106,7 +103,7 @@ class RegistrationViewModel : ViewModel() {
                 val isExist = personDao.getPersonId(_nickname) != null
 
                 withContext(Dispatchers.Main) {
-                    nicknameExist.value = isExist
+                    isSetErrorToNickname.value = isExist
                 }
             }
         }
@@ -116,10 +113,10 @@ class RegistrationViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val id = personDao.addPerson(
                 PersonEntity(
-                    nickName = nickname.value!!,
+                    nickName = nickname.value!!.removeExtraSpaces(),
                     password = password.value!!,
-                    name = name.value!!,
-                    secondName = secondName.value!!,
+                    name = name.value!!.removeExtraSpaces(),
+                    secondName = secondName.value!!.removeExtraSpaces(),
                     birthDate = birthDate.value!!
                 )
             )

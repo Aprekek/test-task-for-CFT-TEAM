@@ -54,6 +54,10 @@ class LoginFragment : Fragment() {
                 navigateToMainFragment()
             }
         }
+
+        viewModel.password.observe(viewLifecycleOwner) {
+            binding.passwordTil.error = null
+        }
     }
 
     private fun savePersonIdToPreferences(id: Long) {

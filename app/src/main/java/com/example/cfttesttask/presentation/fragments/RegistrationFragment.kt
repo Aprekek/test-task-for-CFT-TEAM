@@ -54,10 +54,14 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.nicknameExist.observe(viewLifecycleOwner) { isExist ->
-            if (!isExist) {
+        viewModel.isSetErrorToNickname.observe(viewLifecycleOwner) { isError ->
+            if (!isError) {
                 viewModel.addPersonRegInfoToDB()
             }
+        }
+
+        viewModel.nickname.observe(viewLifecycleOwner) {
+            binding.nicknameTil.error = null
         }
 
         viewModel.personId.observe(viewLifecycleOwner) {
