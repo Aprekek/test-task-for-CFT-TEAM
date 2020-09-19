@@ -36,6 +36,9 @@ class StartingFragment : Fragment() {
 
     private fun initListeners() {
         binding.logInButton.setOnClickListener {
+            findNavController().navigate(
+                StartingFragmentDirections.actionStartingFragmentToLoginFragment()
+            )
         }
         binding.signUpButton.setOnClickListener {
             findNavController().navigate(

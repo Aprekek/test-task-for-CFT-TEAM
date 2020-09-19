@@ -2,6 +2,7 @@ package com.example.cfttesttask.di
 
 import androidx.room.Room
 import com.example.cfttesttask.data.PersonDatabase
+import com.example.cfttesttask.presentation.fragments.LoginViewModel
 import com.example.cfttesttask.presentation.fragments.MainViewModel
 import com.example.cfttesttask.presentation.fragments.RegistrationViewModel
 import org.koin.android.ext.koin.androidContext
@@ -11,6 +12,7 @@ import org.koin.dsl.module
 private val viewModelModule = module {
     viewModel { RegistrationViewModel() }
     viewModel { MainViewModel() }
+    viewModel { LoginViewModel() }
 }
 
 private val roomDatabaseModule = module {

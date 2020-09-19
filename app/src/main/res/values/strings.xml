@@ -6,10 +6,10 @@
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="birth_date">Дата рождения</string>
-    <string name="nickname">Nickname</string>
+    <string name="nickname">Никнейм</string>
 
     <string name="sign_up">Зарегистрироваться</string>
-    <string name="log_in">Войти</string>
+    <string name="login">Войти</string>
 
     <string name="nickname_error_message">Пользователь с таким никнеймом уже существует</string>
     <string name="password_error_message">"Проль должен быть длинной 8–16 символов,"
@@ -21,4 +21,5 @@
     <string name="greeting_btn_text">Приветствие!</string>
     <string name="greeting_message">Привет! Хорошего дня =)</string>
     <string name="exit">Выйти</string>
+    <string name="entrance">Вход</string>
 </resources>
