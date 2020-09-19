@@ -3,6 +3,7 @@ package com.example.cfttesttask.presentation.fragments
 import androidx.lifecycle.*
 import com.example.cfttesttask.data.PersonDao
 import com.example.cfttesttask.data.PersonEntity
+import com.example.cfttesttask.domain.extentions.isContainsLowercase
 import com.example.cfttesttask.domain.extentions.isContainsNumber
 import com.example.cfttesttask.domain.extentions.isContainsUppercase
 import com.example.cfttesttask.domain.extentions.setOrRemoveBitFlag
@@ -45,7 +46,7 @@ class RegistrationViewModel : ViewModel() {
 
     val nicknameExist = MutableLiveData<Boolean>()
     val isPasswordNotValid: LiveData<Boolean> = Transformations.map(password) {
-        !(it.isContainsNumber() && it.isContainsUppercase() &&
+        !(it.isContainsNumber() && it.isContainsUppercase() && it.isContainsLowercase() &&
                 (it.length >= MIN_LENGTH) && (it.length <= MAX_LENGTH))
     }
     val isConfPasswordNotValid: LiveData<Boolean> = Transformations.map(confirmedPassword) {

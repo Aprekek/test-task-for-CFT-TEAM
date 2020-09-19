@@ -13,3 +13,10 @@ fun String.isContainsUppercase(): Boolean {
     }
     return false
 }
+
+fun String.isContainsLowercase(): Boolean {
+    forEach {
+        if (it.isLowerCase()) return true
+    }
+    return false
+}
