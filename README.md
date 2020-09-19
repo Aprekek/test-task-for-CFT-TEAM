@@ -1,1 +1,1 @@
-test task for CFT TEAM (septemper 2020)
+test task for CFT TEAM (september 2020)
